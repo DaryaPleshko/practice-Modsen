@@ -31,7 +31,9 @@ const Header = ({ form, setForm, searchBooks }) => {
                                 <option value="art">art</option>
                                 <option value="biography">biography</option>
                                 <option value="computers">computers</option>
-                                <option value="history">history</option>
+                                <option value="history">history</option> 
+                                <option value="medical">medical</option>
+                                <option value="poetry">poetry</option>
                             </select>
                         </div>
                         <div>

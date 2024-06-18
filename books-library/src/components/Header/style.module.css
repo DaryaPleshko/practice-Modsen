@@ -47,7 +47,7 @@
     transform: translateY(-50%);
     width: 30px;
     height: 30px;
-    background: url(./assets/lypa.jpg) no-repeat center center;
+    background: url(./assets/icon.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -80,7 +80,7 @@
     font-size: 14px;
 }
 
-.case input {
+.case select {
     padding: 6px;
     border: 1px solid #ccc;
     border-radius: 2px;
