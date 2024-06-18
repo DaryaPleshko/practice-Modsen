@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-style: normal;
+  font-family: 'Montserrat';
+  font-size: 16px;
+  color: rgb(231, 237, 241);
+}
+
+input {
+  outline: none;
+}
