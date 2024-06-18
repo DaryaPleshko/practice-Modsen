@@ -45,8 +45,8 @@
     right: 1px;
     top: 40%;
     transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     background: url(./assets/icon.jpg) no-repeat center center;
     background-size: cover;
 }
@@ -77,12 +77,14 @@
 
 .case p {
     margin-bottom: 5px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .case select {
-    padding: 6px;
+    padding: 10px 20px;
     border: 1px solid #ccc;
-    border-radius: 2px;
-    font-size: 14px;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    outline: none;
 }

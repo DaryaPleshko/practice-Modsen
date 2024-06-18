@@ -17,7 +17,11 @@
     gap: 80px;
 }
 
-.containerBooks>div {
+.containerBooks > div:hover {
+    transform: scale(1.1);
+}
+
+.containerBooks > div {
     background-color: #38383810;
     border-radius: 5px;
     box-shadow: 5px 9px 15px 0 rgba(0, 0, 0, 0.1);
@@ -25,6 +29,7 @@
     width: 220px;
     text-align: left;
     color: #333;
+    transition: transform 0.3s ease; /* Плавный переход для эффекта */
 }
 
 .containerBooks img{
