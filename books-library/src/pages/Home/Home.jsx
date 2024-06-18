@@ -59,62 +59,44 @@
 import style from './style.module.css'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Header from '../../components/Header/Header';
 
 const Home = () => {
-    const API_KEY = 'AIzaSyAo-wFx9JQiJ3NnZlaygtzcQjMmTp80F2Y';
-    const [books, setBooks] = useState([]);
+    const [books, setBooks] = useState([]); // хрнанится массив который отображается книг. после запроса. результат
+    const [form, setForm] = useState({ title: '', subject: '', sorting: '' }); // до резльтата. формирование инпута
 
-    const searchBooks = async (query, category, sorting) => {
+    const searchBooks = async () => {
+        const API_KEY = 'AIzaSyAo-wFx9JQiJ3NnZlaygtzcQjMmTp80F2Y';
         const url = 'https://www.googleapis.com/books/v1/volumes';
         try {
             const response = await axios.get(url, {
                 params: {
-                    q: query, // Search query
-                    subject: category !== 'all' ? `subject:${category}` : undefined, // Category filter
-                    orderBy: sorting, // Sorting order
+                    q: form.title || 'all',
+                    subject: form.subject || 'all',
+                    orderBy: form.sorting || 'relevance',
                     key: API_KEY,
+                    maxResults: 40
                 },
             });
-            setBooks(response.data.items); // Update state with fetched books
+
+            setBooks(response.data.items);
         } catch (error) {
             console.error('Failed to fetch books from Google Books API:', error);
         }
     };
 
     useEffect(() => {
-        searchBooks('JavaScript', 'Computers', 'relevance');
+        searchBooks();
     }, []);
 
     return (
         <>
-            <div className={style.header}>
-                <div className={style.wrapper}>
-                    <p className={style.name}> <b>Search for books </b></p>
-                    <div className={style.searchWrapper}>
-                        <div className={style.searchContainer}>
-                            <input className={style.search} type="text" placeholder='Enter The Book Title' />
-                            <div></div>
-                        </div>
-
-                        <div className={style.case}>
-                            <div>
-                                <p>Categories</p>
-                                <input type="text" />
-                            </div>
-                            <div>
-                                <p>Sorting by</p>
-                                <input type="text" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Header form={form} setForm={setForm} searchBooks={searchBooks}></Header>
 
             <div className={style.main}>
                 <p className={style.numberOfResults}>Found {books.length} results</p>
 
                 <div className={style.containerBooks}>
-
 
                     {books.map((el, i) => <div>
                         {el.volumeInfo.imageLinks && (
