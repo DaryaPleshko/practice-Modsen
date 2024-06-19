@@ -1,11 +1,13 @@
-import style from './style.module.css'
+import style from './style.module.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 
 const Home = () => {
     const [books, setBooks] = useState([]); // хранится массив который отображается книг после запроса
     const [form, setForm] = useState({ title: '', subject: 'all', sorting: '' }); // состояние для формы
+    const navigate = useNavigate(); // хук для навигации
 
     const searchBooks = async () => {
         const API_KEY = 'AIzaSyAo-wFx9JQiJ3NnZlaygtzcQjMmTp80F2Y';
@@ -32,6 +34,10 @@ const Home = () => {
         searchBooks();
     }, []);
 
+    const handleBookClick = (bookId) => {
+        navigate(`/info-books/${bookId}`);
+    };
+
     return (
         <>
             <Header form={form} setForm={setForm} searchBooks={searchBooks}></Header>
@@ -41,7 +47,7 @@ const Home = () => {
 
                 <div className={style.containerBooks}>
                     {books.map((el, i) => (
-                        <div key={i}>
+                        <div key={i} onClick={() => handleBookClick(el.id)} className={style.bookItem}>
                             {el.volumeInfo.imageLinks && (
                                 <img src={el.volumeInfo.imageLinks.thumbnail} alt="Book" className={style[el.imageClass]} />
                             )}

@@ -17,7 +17,6 @@
 .imageBook {
     width: 52%;
     height: 400px;
-    background-image: url(./assets/images.jpg);
     background-size: cover;
     background-position: center;
     margin: 20px;
