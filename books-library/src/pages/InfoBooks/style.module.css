@@ -51,4 +51,5 @@
 
 .caseInfo div{
     border: 1px solid rgba(0, 0, 0, 0.203);
+    padding: 20px;
 }

@@ -19,7 +19,6 @@ const InfoBooks = () => {
                         key: API_KEY,
                     },
                 });
-
                 setBook(response.data); // Установка данных книги в состояние
             } catch (error) {
                 console.error('Failed to fetch book details from Google Books API:', error);
@@ -33,21 +32,32 @@ const InfoBooks = () => {
         return <p>Loading...</p>; // Загрузка пока данные не будут получены
     }
 
+    const { volumeInfo } = book;
+
+    // очистка HTML-тегов из строки
+    const removeHtmlTags = (str) => {
+        const div = document.createElement('div');
+        div.innerHTML = str;
+        return div.textContent || div.innerText || '';
+    };
+
+    const description = volumeInfo.description ? removeHtmlTags(volumeInfo.description) : 'Описание отсутствует.';
+
     return (
         <>
             <Header />
             <div className={style.containerInfo}>
                 <div className={style.caseImg}>
-                    {book.volumeInfo.imageLinks && (
-                        <img src={book.volumeInfo.imageLinks.thumbnail} alt={book.volumeInfo.title} className={style.imageBook} />
+                    {volumeInfo.imageLinks && (
+                        <img src={volumeInfo.imageLinks.thumbnail} alt={volumeInfo.title} className={style.imageBook} />
                     )}
                 </div>
                 <div className={style.caseInfo}>
-                    <p className={style.categoriesBook}>{book.volumeInfo.categories?.join(' / ')}</p>
-                    <p className={style.titleBook}><b>{book.volumeInfo.title}</b></p>
-                    <p className={style.authorBook}>{book.volumeInfo.authors?.join(', ')}</p>
+                    <p className={style.categoriesBook}>{volumeInfo.categories?.join(' / ')}</p>
+                    <p className={style.titleBook}><b>{volumeInfo.title}</b></p>
+                    <p className={style.authorBook}>{volumeInfo.authors?.join(', ')}</p>
                     <div>
-                        <p className={style.aboutBook}><b>{book.volumeInfo.description}</b></p>
+                        <p className={style.aboutBook}><b>{description}</b></p>
                     </div>
                 </div>
             </div>
