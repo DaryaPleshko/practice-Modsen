@@ -1,0 +1,59 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .numberOfResults {
+    font-size: 18px;
+    margin: 20px 0;
+    color: #333;
+  }
+
+  .containerBooks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 80px;
+
+    div:hover {
+      transform: scale(1.1);
+    }
+
+    div {
+      background-color: #38383810;
+      border-radius: 5px;
+      box-shadow: 5px 9px 15px 0 rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      width: 220px;
+      text-align: left;
+      color: #333;
+      transition: transform 0.3s ease;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      max-height: 180px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .wayBook {
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 5px;
+    }
+
+    .nameBook {
+      font-size: 16px;
+      color: #333;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .author {
+      font-size: 14px;
+      color: #777;
+    }
+  }
+}

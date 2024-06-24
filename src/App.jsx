@@ -1,22 +1,30 @@
-import React from 'react';
+// import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import InfoBooks from './pages/InfoBooks/InfoBooks';
 
+const routes = [
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/info-books/:bookId',
+    element: <InfoBooks />,
+  },
+];
+
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/info-books/:bookId" element={<InfoBooks />} />
+      {routes.map((route, index) => (
+        <Route key={index} path={route.path} element={route.element} />
+      ))}
     </Routes>
   );
 };
 
 export default App;
-
-
-
-
 
 // import React, { useState, useEffect } from 'react';
 // import GoogleAuth from './components/GoogleAuth/GoogleAuth';
@@ -32,16 +40,23 @@ export default App;
 
 // return (
 //   <div>
-{/* <h1>Google Books API</h1> */ }
-{/* <Home></Home>
-      <InfoBooks></InfoBooks> */}
-{/* <GoogleAuth setToken={setToken} /> */ }
-{/* {token && <Home token={token} />} */ }
-{/* </div>
+{
+  /* <h1>Google Books API</h1> */
+}
+{
+  /* <Home></Home>
+      <InfoBooks></InfoBooks> */
+}
+{
+  /* <GoogleAuth setToken={setToken} /> */
+}
+{
+  /* {token && <Home token={token} />} */
+}
+{
+  /* </div>
   );
 };
 
-export default App; */}
-
-
-
+export default App; */
+}
