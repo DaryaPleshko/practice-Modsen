@@ -1,8 +1,8 @@
 import style from './style.module.scss';
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header/Header';
+import { getBooks } from '../../api';
 
 const normalizeBookData = book => {
   return {
@@ -22,19 +22,9 @@ const Home = () => {
   const navigate = useNavigate();
 
   const searchBooks = useCallback(async () => {
-    const API_KEY = 'AIzaSyAL8zHF2VMT2bFP6z9euyvZhufsPUqHkGY';
-    const url = 'https://www.googleapis.com/books/v1/volumes';
-
     setLoading(true);
     try {
-      const response = await axios.get(url, {
-        params: {
-          q: form.subject || 'all',
-          orderBy: form.sorting || 'relevance',
-          key: API_KEY,
-          maxResults: 40,
-        },
-      });
+      const response = await getBooks(form);
 
       const normalizedData = (response.data.items || []).map(normalizeBookData);
       setBooks(normalizedData);
@@ -60,7 +50,7 @@ const Home = () => {
         <p className={style.numberOfResults}>Found {books.length} results</p>
         <div className={style.containerBooks}>
           {loading ? (
-            <div className={style.load}>Loading...</div>
+            <div className={style.load}></div>
           ) : (
             books.map((book, i) => (
               <div key={i} onClick={() => handleBookClick(book.id)} className={style.bookItem}>

@@ -1,3 +1,15 @@
+.load {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  background-image: url(../../assets/load.gif);
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-top: 60px;
+}
+
 .containerInfo {
   display: flex;
   flex-direction: row;
