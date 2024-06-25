@@ -29,10 +29,24 @@
     flex-direction: column;
     padding-left: 20px;
 
+    .back {
+      width: 30px;
+      height: 30px;
+      background-image: url(../../assets/backIcon.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      transition: transform 0.3s ease-in-out;
+      margin-top: 15px;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
     .categoriesBook {
       font-size: 16px;
       color: #808080;
-      margin: 35px 0 20px 0;
+      margin: 15px 0 20px 0;
     }
 
     .titleBook {
@@ -47,9 +61,14 @@
       margin-bottom: 30px;
     }
 
-    div {
+    .bookDescription {
       border: 1px solid #00000034;
       padding: 20px;
+
+      .aboutBook {
+        font-size: 14px;
+        color: #000000;
+      }
     }
   }
 }

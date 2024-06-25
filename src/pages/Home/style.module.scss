@@ -5,7 +5,7 @@
 
   .numberOfResults {
     font-size: 18px;
-    margin: 20px 0;
+    margin: 30px 0;
     color: #333;
   }
 
@@ -14,12 +14,21 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 80px;
+    position: relative;
 
-    div:hover {
-      transform: scale(1.1);
+    .load {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      background-image: url(../../assets/load.gif);
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-top: 60px;
     }
 
-    div {
+    .bookItem {
       background-color: #38383810;
       border-radius: 5px;
       box-shadow: 5px 9px 15px 0 rgba(0, 0, 0, 0.1);
@@ -28,32 +37,37 @@
       text-align: left;
       color: #333;
       transition: transform 0.3s ease;
-    }
 
-    img {
-      width: 100%;
-      height: auto;
-      max-height: 180px;
-      object-fit: contain;
-      margin-bottom: 10px;
-      display: block;
-    }
-    .wayBook {
-      font-size: 13px;
-      color: #aaa;
-      margin-bottom: 5px;
-    }
+      &:hover {
+        transform: scale(1.1);
+      }
 
-    .nameBook {
-      font-size: 16px;
-      color: #333;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+      img {
+        width: 100%;
+        height: auto;
+        max-height: 180px;
+        object-fit: contain;
+        margin-bottom: 10px;
+        display: block;
+      }
 
-    .author {
-      font-size: 14px;
-      color: #777;
+      .wayBook {
+        font-size: 13px;
+        color: #aaa;
+        margin-bottom: 5px;
+      }
+
+      .nameBook {
+        font-size: 16px;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .author {
+        font-size: 14px;
+        color: #777;
+      }
     }
   }
 }
