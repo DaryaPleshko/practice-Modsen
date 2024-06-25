@@ -18,18 +18,18 @@ const normalizeBookData = book => {
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [form, setForm] = useState({ title: '', subject: 'all', sorting: '' });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const searchBooks = useCallback(async () => {
-    const API_KEY = 'AIzaSyAo-wFx9JQiJ3NnZlaygtzcQjMmTp80F2Y';
+    const API_KEY = 'AIzaSyAL8zHF2VMT2bFP6z9euyvZhufsPUqHkGY';
     const url = 'https://www.googleapis.com/books/v1/volumes';
 
-    const query = `${form.title}${form.subject && form.subject !== 'all' ? `+subject:${form.subject}` : ''}`;
-
+    setLoading(true);
     try {
       const response = await axios.get(url, {
         params: {
-          q: query || 'all',
+          q: form.subject || 'all',
           orderBy: form.sorting || 'relevance',
           key: API_KEY,
           maxResults: 40,
@@ -40,12 +40,14 @@ const Home = () => {
       setBooks(normalizedData);
     } catch (error) {
       console.error('Failed to fetch books from Google Books API:', error);
+    } finally {
+      setLoading(false);
     }
-  }, [form]); // Добавьте form в массив зависимостей useCallback
+  }, [form]);
 
   useEffect(() => {
     searchBooks();
-  }, [searchBooks]); // Добавьте searchBooks в массив зависимостей useEffect
+  }, [searchBooks]);
 
   const handleBookClick = bookId => {
     navigate(`/info-books/${bookId}`);
@@ -54,20 +56,23 @@ const Home = () => {
   return (
     <>
       <Header form={form} setForm={setForm} searchBooks={searchBooks}></Header>
-
       <section className={style.main}>
         <p className={style.numberOfResults}>Found {books.length} results</p>
         <div className={style.containerBooks}>
-          {books.map((book, i) => (
-            <div key={i} onClick={() => handleBookClick(book.id)} className={style.bookItem}>
-              {book.imageUrl && <img src={book.imageUrl} alt="Book" className={style[book.imageClass]} />}
-              <p className={style.wayBook}>{book.categories}</p>
-              <p className={style.nameBook}>
-                <b>{book.title}</b>
-              </p>
-              <p className={style.author}>{book.authors}</p>
-            </div>
-          ))}
+          {loading ? (
+            <div className={style.load}>Loading...</div>
+          ) : (
+            books.map((book, i) => (
+              <div key={i} onClick={() => handleBookClick(book.id)} className={style.bookItem}>
+                {book.imageUrl && <img src={book.imageUrl} alt="Book" className={style[book.imageClass]} />}
+                <p className={style.wayBook}>{book.categories}</p>
+                <p className={style.nameBook}>
+                  <b>{book.title}</b>
+                </p>
+                <p className={style.author}>{book.authors}</p>
+              </div>
+            ))
+          )}
         </div>
       </section>
     </>

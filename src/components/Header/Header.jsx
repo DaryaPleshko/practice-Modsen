@@ -1,4 +1,3 @@
-// import React from 'react';
 import PropTypes from 'prop-types';
 import Select from '../Select/Select';
 import style from './style.module.scss';
@@ -31,7 +30,7 @@ const Header = ({ form, setForm, searchBooks }) => {
     <header className={style.background}>
       <div className={style.wrapper}>
         <p className={style.name}>
-          <b>Search for books </b>
+          <b>Search for books</b>
         </p>
         <div className={style.searchWrapper}>
           <div className={style.searchContainer}>

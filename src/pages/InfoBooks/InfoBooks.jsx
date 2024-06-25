@@ -1,15 +1,16 @@
 import style from './style.module.scss';
 import { useEffect, useState, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../../components/Header/Header';
 
 const InfoBooks = () => {
   const { bookId } = useParams();
   const [book, setBook] = useState(null);
+  const navigate = useNavigate();
 
   const fetchBookDetails = useCallback(async () => {
-    const API_KEY = 'AIzaSyAo-wFx9JQiJ3NnZlaygtzcQjMmTp80F2Y';
+    const API_KEY = 'AIzaSyAL8zHF2VMT2bFP6z9euyvZhufsPUqHkGY';
     const url = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
 
     try {
@@ -18,23 +19,22 @@ const InfoBooks = () => {
           key: API_KEY,
         },
       });
-      setBook(response.data); // Установка данных книги в состояние
+      setBook(response.data);
     } catch (error) {
       console.error('Failed to fetch book details from Google Books API:', error);
     }
-  }, [bookId]); // Добавьте bookId в массив зависимостей useCallback
+  }, [bookId]);
 
   useEffect(() => {
     fetchBookDetails();
-  }, [fetchBookDetails]); // Добавьте fetchBookDetails в массив зависимостей useEffect
+  }, [fetchBookDetails]);
 
   if (!book) {
-    return <p>Loading...</p>; // Загрузка пока данные не будут получены
+    return <p>Loading...</p>;
   }
 
   const { volumeInfo } = book;
 
-  // Очистка HTML-тегов из строки
   const removeHtmlTags = str => {
     const div = document.createElement('div');
     div.innerHTML = str;
@@ -52,6 +52,12 @@ const InfoBooks = () => {
           {volumeInfo.imageLinks && <img src={volumeInfo.imageLinks.thumbnail} alt={volumeInfo.title} className={style.imageBook} />}
         </div>
         <div className={style.caseInfo}>
+          <div
+            onClick={() => {
+              navigate('/');
+            }}
+            className={style.back}
+          ></div>
           <p className={style.categoriesBook}>{volumeInfo.categories?.join(' / ')}</p>
           <p className={style.titleBook}>
             <b>{volumeInfo.title}</b>
