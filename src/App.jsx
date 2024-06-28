@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import InfoBooks from './pages/InfoBooks/InfoBooks';
+import { Home } from './pages/Home/Home';
+import { InfoBooks } from './pages/InfoBooks/InfoBooks';
 
 const routes = [
   {
@@ -23,4 +23,4 @@ const App = () => {
   );
 };
 
-export default App;
+export { App };

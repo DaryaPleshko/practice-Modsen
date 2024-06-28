@@ -26,4 +26,4 @@ Select.propTypes = {
   setCurrentOption: PropTypes.func.isRequired,
 };
 
-export default Select;
+export { Select };
