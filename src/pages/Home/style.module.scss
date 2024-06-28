@@ -6,7 +6,7 @@
   .numberOfResults {
     font-size: 18px;
     margin: 30px 0;
-    color: #333;
+    color: rgb(51, 51, 51);
   }
 
   .containerBooks {
@@ -29,13 +29,13 @@
     }
 
     .bookItem {
-      background-color: #38383810;
+      background-color: rgba(56, 56, 56, 0.063);
       border-radius: 5px;
       box-shadow: 5px 9px 15px 0 rgba(0, 0, 0, 0.1);
       padding: 15px;
       width: 220px;
       text-align: left;
-      color: #333;
+      color: rgb(51, 51, 51);
       transition: transform 0.3s ease;
 
       &:hover {
@@ -53,20 +53,20 @@
 
       .wayBook {
         font-size: 13px;
-        color: #aaa;
+        color: rgb(170, 170, 170);
         margin-bottom: 5px;
       }
 
       .nameBook {
         font-size: 16px;
-        color: #333;
+        color: rgb(51, 51, 51);
         font-weight: bold;
         margin-bottom: 10px;
       }
 
       .author {
         font-size: 14px;
-        color: #777;
+        color: rgb(119, 119, 119);
       }
     }
   }

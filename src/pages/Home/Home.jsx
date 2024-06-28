@@ -1,8 +1,9 @@
-import style from './style.module.scss';
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/Header/Header';
+import { Header } from '../../components/Header/Header';
 import { getBooks } from '../../api';
+import style from './style.module.scss';
+import { SearchBooksProvider } from '../../context/SearchBooksProvider';
 
 const normalizeBookData = book => {
   return {
@@ -44,8 +45,8 @@ const Home = () => {
   };
 
   return (
-    <>
-      <Header form={form} setForm={setForm} searchBooks={searchBooks}></Header>
+    <SearchBooksProvider searchBooks={searchBooks}>
+      <Header form={form} setForm={setForm} />
       <section className={style.main}>
         <p className={style.numberOfResults}>Found {books.length} results</p>
         <div className={style.containerBooks}>
@@ -65,8 +66,8 @@ const Home = () => {
           )}
         </div>
       </section>
-    </>
+    </SearchBooksProvider>
   );
 };
 
-export default Home;
+export { Home };

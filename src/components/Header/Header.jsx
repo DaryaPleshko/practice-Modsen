@@ -1,6 +1,8 @@
+// import React from 'react';
 import PropTypes from 'prop-types';
-import Select from '../Select/Select';
+import { Select } from '../Select/Select';
 import style from './style.module.scss';
+import { useSearchBooks } from '../../context/useSearchBooks';
 
 const categoryOptions = [
   { value: 'all', label: 'all' },
@@ -17,14 +19,16 @@ const categorySorting = [
   { value: 'newest', label: 'newest' },
 ];
 
-const Header = ({ form, setForm, searchBooks }) => {
+const Header = ({ form, setForm }) => {
+  const searchBooks = useSearchBooks();
+
   const changeInputsForm = (key, value) => {
     setForm({ ...form, [key]: value });
   };
 
-  async function getBooksByForm() {
+  const getBooksByForm = async () => {
     searchBooks();
-  }
+  };
 
   return (
     <header className={style.background}>
@@ -60,7 +64,6 @@ Header.propTypes = {
     sorting: PropTypes.string,
   }).isRequired,
   setForm: PropTypes.func.isRequired,
-  searchBooks: PropTypes.func.isRequired,
 };
 
-export default Header;
+export { Header };

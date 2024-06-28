@@ -1,7 +1,7 @@
 import style from './style.module.scss';
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Header from '../../components/Header/Header';
+import { Header } from '../../components/Header/Header';
 import { getBookById } from '../../api';
 
 const InfoBooks = () => {
@@ -29,7 +29,6 @@ const InfoBooks = () => {
   return (
     <>
       <Header />
-
       {loading ? (
         <div className={style.load}></div>
       ) : (
@@ -63,4 +62,4 @@ const InfoBooks = () => {
   );
 };
 
-export default InfoBooks;
+export { InfoBooks };
