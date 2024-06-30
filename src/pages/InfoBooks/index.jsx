@@ -1,7 +1,7 @@
 import style from './style.module.scss';
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Header } from '../../components/Header/Header';
+import { Header } from '../../components/Header';
 import { getBookById } from '../../api';
 
 const InfoBooks = () => {

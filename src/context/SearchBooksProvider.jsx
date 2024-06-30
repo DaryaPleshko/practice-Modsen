@@ -12,4 +12,4 @@ SearchBooksProvider.propTypes = {
   searchBooks: PropTypes.func.isRequired,
 };
 
-export { SearchBooksContext };
+export default SearchBooksContext;

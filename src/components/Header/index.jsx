@@ -1,6 +1,6 @@
 // import React from 'react';
 import PropTypes from 'prop-types';
-import { Select } from '../Select/Select';
+import { Select } from '../Select';
 import style from './style.module.scss';
 import { useSearchBooks } from '../../context/useSearchBooks';
 
