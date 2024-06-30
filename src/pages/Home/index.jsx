@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../../components/Header/Header';
+import { Header } from '../../components/Header';
 import { getBooks } from '../../api';
 import style from './style.module.scss';
 import { SearchBooksProvider } from '../../context/SearchBooksProvider';
