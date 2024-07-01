@@ -4,17 +4,7 @@ import { Header } from '../../components/Header';
 import { getBooks } from '../../api';
 import style from './style.module.scss';
 import { SearchBooksProvider } from '../../context/SearchBooksProvider';
-
-const normalizeBookData = book => {
-  return {
-    id: book.id,
-    imageUrl: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : null,
-    categories: book.volumeInfo.categories ? book.volumeInfo.categories.join(', ') : 'No categories',
-    title: book.volumeInfo.title || 'No title',
-    authors: book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : 'Unknown author',
-    imageClass: book.imageClass || 'defaultImageClass',
-  };
-};
+import { normalizeBookData } from '../../helpers';
 
 const Home = () => {
   const [books, setBooks] = useState([]);
@@ -53,8 +43,8 @@ const Home = () => {
           {loading ? (
             <div className={style.load}></div>
           ) : (
-            books.map((book, i) => (
-              <div key={i} onClick={() => handleBookClick(book.id)} className={style.bookItem}>
+            books.map(book => (
+              <div key={book.id} onClick={() => handleBookClick(book.id)} className={style.bookItem}>
                 {book.imageUrl && <img src={book.imageUrl} alt="Book" className={style[book.imageClass]} />}
                 <p className={style.wayBook}>{book.categories}</p>
                 <p className={style.nameBook}>
