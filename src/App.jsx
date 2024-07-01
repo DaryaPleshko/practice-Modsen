@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { InfoBooks } from './pages/InfoBooks';
-import ErrorBoundary from './components/ErrorBoundary';
+import ErrorBoundary from './ErrorBoundary';
 
 const routes = [
   {
