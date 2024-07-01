@@ -12,6 +12,20 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const loadMoreBooks = async () => {
+    setLoading(true);
+    try {
+      const response = await getBooks(form, books.length, 30);
+
+      const newBooks = (response.data.items || []).map(normalizeBookData);
+      setBooks(prevBooks => [...prevBooks, ...newBooks]);
+    } catch (error) {
+      console.error('Failed to fetch books from Google Books API:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const searchBooks = useCallback(async () => {
     setLoading(true);
     try {
@@ -55,6 +69,9 @@ const Home = () => {
             ))
           )}
         </div>
+        <button onClick={loadMoreBooks} className={style.loadMoreButton}>
+          {loading ? <div className={style.load}></div> : 'Load more'}
+        </button>
       </section>
     </SearchBooksProvider>
   );
