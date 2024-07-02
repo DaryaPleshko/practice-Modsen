@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-
 import { useSearchBooks } from '../../context/useSearchBooks';
 import { Select } from '../Select';
 import style from './style.module.scss';
@@ -23,11 +22,13 @@ const Header = ({ form, setForm }) => {
   const searchBooks = useSearchBooks();
 
   const changeInputsForm = (key, value) => {
+    console.log(`Changing ${key} to ${value}`);
     setForm({ ...form, [key]: value });
   };
 
   const getBooksByForm = async () => {
-    searchBooks();
+    console.log('Form data:', form);
+    searchBooks(form);
   };
 
   return (
@@ -54,8 +55,8 @@ const Header = ({ form, setForm }) => {
           </form>
 
           <div className={style.case}>
-            <Select options={categoryOptions} label="Categories" setCurrentOption={e => changeInputsForm('subject', e.target.value)} />
-            <Select options={categorySorting} label="Sorting by" setCurrentOption={e => changeInputsForm('sorting', e.target.value)} />
+            <Select options={categoryOptions} label="Categories" setCurrentOption={value => changeInputsForm('subject', value)} />
+            <Select options={categorySorting} label="Sorting by" setCurrentOption={value => changeInputsForm('sorting', value)} />
           </div>
         </div>
       </div>
