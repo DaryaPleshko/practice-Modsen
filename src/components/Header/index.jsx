@@ -1,8 +1,9 @@
 // import React from 'react';
 import PropTypes from 'prop-types';
+
+import { useSearchBooks } from '../../context/useSearchBooks';
 import { Select } from '../Select';
 import style from './style.module.scss';
-import { useSearchBooks } from '../../context/useSearchBooks';
 
 const categoryOptions = [
   { value: 'all', label: 'all' },

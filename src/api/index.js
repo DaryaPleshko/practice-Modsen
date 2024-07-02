@@ -27,4 +27,4 @@ const getBookById = async bookId => {
   });
   return response;
 };
-export { getBooks, getBookById };
+export { getBookById, getBooks };

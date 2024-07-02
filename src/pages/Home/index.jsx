@@ -1,10 +1,11 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../../components/Header';
+
 import { getBooks } from '../../api';
-import style from './style.module.scss';
+import { Header } from '../../components/Header';
 import { SearchBooksProvider } from '../../context/SearchBooksProvider';
 import { normalizeBookData } from '../../helpers';
+import style from './style.module.scss';
 
 const Home = () => {
   const [books, setBooks] = useState([]);

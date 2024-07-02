@@ -1,8 +1,9 @@
-import style from './style.module.scss';
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Header } from '../../components/Header';
+
 import { getBookById } from '../../api';
+import { Header } from '../../components/Header';
+import style from './style.module.scss';
 
 const InfoBooks = () => {
   const { bookId } = useParams();
