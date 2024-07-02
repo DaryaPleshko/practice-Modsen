@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getBooks = async (form, startIndex = 0, maxResults = 10) => {
+const getBooks = async (form: any, startIndex: number = 0, maxResults: number = 10) => {
   const API_KEY = 'AIzaSyAL8zHF2VMT2bFP6z9euyvZhufsPUqHkGY';
   const url = 'https://www.googleapis.com/books/v1/volumes';
 
@@ -16,7 +16,7 @@ const getBooks = async (form, startIndex = 0, maxResults = 10) => {
   return response;
 };
 
-const getBookById = async bookId => {
+const getBookById = async (bookId: number) => {
   const API_KEY = 'AIzaSyAL8zHF2VMT2bFP6z9euyvZhufsPUqHkGY';
   const url = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
 

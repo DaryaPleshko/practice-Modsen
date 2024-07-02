@@ -1,6 +1,10 @@
-import PropTypes from 'prop-types';
+interface SelectProps {
+  label: string;
+  options: { label: string; value: string }[];
+  setCurrentOption: (param: any) => void;
+}
 
-const Select = ({ label, options, setCurrentOption }) => {
+const Select: React.FC<SelectProps> = ({ label, options, setCurrentOption }) => {
   return (
     <div>
       <p>{label}</p>
@@ -13,17 +17,6 @@ const Select = ({ label, options, setCurrentOption }) => {
       </select>
     </div>
   );
-};
-
-Select.propTypes = {
-  label: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      value: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  setCurrentOption: PropTypes.func.isRequired,
 };
 
 export { Select };
