@@ -1,4 +1,3 @@
-// import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useSearchBooks } from '../../context/useSearchBooks';
@@ -34,11 +33,17 @@ const Header = ({ form, setForm }) => {
   return (
     <header className={style.background}>
       <div className={style.wrapper}>
-        <p className={style.name}>
+        <h1 className={style.name}>
           <b>Search for books</b>
-        </p>
+        </h1>
         <div className={style.searchWrapper}>
-          <div className={style.searchContainer}>
+          <form
+            className={style.searchContainer}
+            onSubmit={e => {
+              e.preventDefault();
+              getBooksByForm();
+            }}
+          >
             <input
               onChange={e => changeInputsForm('title', e.target.value)}
               className={style.search}
@@ -46,7 +51,7 @@ const Header = ({ form, setForm }) => {
               placeholder="Enter The Book Title"
             />
             <div onClick={() => getBooksByForm()}></div>
-          </div>
+          </form>
 
           <div className={style.case}>
             <Select options={categoryOptions} label="Categories" setCurrentOption={e => changeInputsForm('subject', e.target.value)} />

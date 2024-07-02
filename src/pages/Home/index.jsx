@@ -53,20 +53,22 @@ const Home = () => {
     <SearchBooksProvider searchBooks={searchBooks}>
       <Header form={form} setForm={setForm} />
       <section className={style.main}>
-        <p className={style.numberOfResults}>Found {books.length} results</p>
+        <p className={style.numberOfResults} aria-live="polite">
+          Found {books.length} results
+        </p>
         <div className={style.containerBooks}>
           {loading ? (
             <div className={style.load}></div>
           ) : (
             books.map(book => (
-              <div key={book.id} onClick={() => handleBookClick(book.id)} className={style.bookItem}>
+              <article key={book.id} onClick={() => handleBookClick(book.id)} className={style.bookItem}>
                 {book.imageUrl && <img src={book.imageUrl} alt="Book" className={style[book.imageClass]} />}
                 <p className={style.wayBook}>{book.categories}</p>
                 <p className={style.nameBook}>
                   <b>{book.title}</b>
                 </p>
                 <p className={style.author}>{book.authors}</p>
-              </div>
+              </article>
             ))
           )}
         </div>

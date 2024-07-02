@@ -27,6 +27,12 @@ const InfoBooks = () => {
     fetchBookDetails();
   }, [fetchBookDetails]);
 
+  const stripHtmlTags = htmlString => {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlString;
+    return tempDiv.textContent || tempDiv.innerText || '';
+  };
+
   return (
     <>
       <Header />
@@ -52,9 +58,9 @@ const InfoBooks = () => {
             </p>
             <p className={style.authorBook}>{book?.volumeInfo.authors?.join(', ')}</p>
             <div>
-              <p className={style.aboutBook}>
-                <b>{book?.volumeInfo.description}</b>
-              </p>
+              <div className={style.aboutBook}>
+                <b>{book?.volumeInfo.description && stripHtmlTags(book?.volumeInfo.description)}</b>
+              </div>
             </div>
           </div>
         </main>
