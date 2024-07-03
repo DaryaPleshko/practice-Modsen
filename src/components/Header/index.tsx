@@ -33,7 +33,9 @@ const Header: React.FC<HeaderProps> = ({ form, setForm }) => {
 
   const getBooksByForm = async () => {
     console.log('Form data:', form);
-    searchBooks(form);
+    if (searchBooks) {
+      await searchBooks(form);
+    }
   };
 
   return (

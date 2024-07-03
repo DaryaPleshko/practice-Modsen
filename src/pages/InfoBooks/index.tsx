@@ -1,21 +1,38 @@
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { getBookById } from '../../api';
 import { Header } from '../../components/Header';
 import style from './style.module.scss';
+import { iForm } from '../../interface';
 
-const InfoBooks = () => {
-  const { bookId } = useParams();
-  const [book, setBook] = useState(null);
+interface BookVolumeInfo {
+  title: string;
+  authors: string[];
+  categories: string[];
+  description: string;
+  imageLinks?: {
+    thumbnail: string;
+  };
+}
+interface Book {
+  volumeInfo: BookVolumeInfo;
+}
+
+const InfoBooks: React.FC = () => {
+  const { bookId } = useParams<{ bookId: string }>();
+  const [book, setBook] = useState<Book | null>(null);
   const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState<iForm>({ title: '', subject: 'all', sorting: '' });
   const navigate = useNavigate();
 
   const fetchBookDetails = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await getBookById(bookId);
-      setBook(response.data);
+      if (bookId) {
+        const response = await getBookById(bookId);
+        setBook(response.data);
+      }
     } catch (error) {
       console.error('Failed to fetch book details from Google Books API:', error);
     } finally {
@@ -27,7 +44,7 @@ const InfoBooks = () => {
     fetchBookDetails();
   }, [fetchBookDetails]);
 
-  const stripHtmlTags = htmlString => {
+  const stripHtmlTags = (htmlString: string): string => {
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = htmlString;
     return tempDiv.textContent || tempDiv.innerText || '';
@@ -35,7 +52,7 @@ const InfoBooks = () => {
 
   return (
     <>
-      <Header />
+      <Header form={form} setForm={setForm} />
       {loading ? (
         <div className={style.load}></div>
       ) : (

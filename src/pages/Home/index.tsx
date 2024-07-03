@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { getBooks } from '../../api';
@@ -6,10 +6,11 @@ import { Header } from '../../components/Header';
 import { SearchBooksProvider } from '../../context/SearchBooksProvider';
 import { normalizeBookData } from '../../helpers';
 import style from './style.module.scss';
+import { iForm, iBook } from '../../interface';
 
-const Home = () => {
-  const [books, setBooks] = useState([]);
-  const [form, setForm] = useState({ title: '', subject: 'all', sorting: '' });
+const Home: React.FC = () => {
+  const [books, setBooks] = useState<iBook[]>([]);
+  const [form, setForm] = useState<iForm>({ title: '', subject: 'all', sorting: '' });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -45,7 +46,7 @@ const Home = () => {
     searchBooks();
   }, [searchBooks]);
 
-  const handleBookClick = bookId => {
+  const handleBookClick = (bookId: string) => {
     navigate(`/info-books/${bookId}`);
   };
 
@@ -62,7 +63,7 @@ const Home = () => {
           ) : (
             books.map(book => (
               <article key={book.id} onClick={() => handleBookClick(book.id)} className={style.bookItem}>
-                {book.imageUrl && <img src={book.imageUrl} alt="Book" className={style[book.imageClass]} />}
+                {book.imageUrl && <img src={book.imageUrl} alt="Book" className={style[book.imageClass || '']} />}
                 <p className={style.wayBook}>{book.categories}</p>
                 <p className={style.nameBook}>
                   <b>{book.title}</b>

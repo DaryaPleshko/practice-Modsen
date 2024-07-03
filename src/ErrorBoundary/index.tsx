@@ -1,20 +1,20 @@
 import React from 'react';
-
-class ErrorBoundary extends React.Component {
-  constructor(props) {
+import { iErrorBoundaryProps, iErrorBoundaryState } from '../interface';
+class ErrorBoundary extends React.Component<iErrorBoundaryProps, iErrorBoundaryState> {
+  constructor(props: iErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(): iErrorBoundaryState {
     return { hasError: true };
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error: Error, info: React.ErrorInfo): void {
     this.logErrorToMyService(error, info.componentStack);
   }
 
-  logErrorToMyService(error, componentStack) {
+  logErrorToMyService(error: Error, componentStack: string | null | undefined): void {
     console.error('Logged error: ', error, componentStack);
   }
 

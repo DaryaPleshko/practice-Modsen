@@ -16,7 +16,7 @@ const getBooks = async (form: any, startIndex: number = 0, maxResults: number = 
   return response;
 };
 
-const getBookById = async (bookId: number) => {
+const getBookById = async (bookId: string) => {
   const API_KEY = 'AIzaSyAL8zHF2VMT2bFP6z9euyvZhufsPUqHkGY';
   const url = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
 
