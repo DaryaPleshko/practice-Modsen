@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { getBookById } from '../../api';
 import { Header } from '../../components/Header';
-import style from './style.module.scss';
 import { iForm } from '../../interface';
+import style from './style.module.scss';
 
 interface BookVolumeInfo {
   title: string;

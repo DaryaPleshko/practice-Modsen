@@ -1,7 +1,7 @@
 import { useSearchBooks } from '../../context/useSearchBooks';
+import { iForm } from '../../interface';
 import { Select } from '../Select';
 import style from './style.module.scss';
-import { iForm } from '../../interface';
 
 const categoryOptions = [
   { value: 'all', label: 'all' },

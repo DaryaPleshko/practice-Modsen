@@ -5,8 +5,8 @@ import { getBooks } from '../../api';
 import { Header } from '../../components/Header';
 import { SearchBooksProvider } from '../../context/SearchBooksProvider';
 import { normalizeBookData } from '../../helpers';
+import { iBook, iForm } from '../../interface';
 import style from './style.module.scss';
-import { iForm, iBook } from '../../interface';
 
 const Home: React.FC = () => {
   const [books, setBooks] = useState<iBook[]>([]);
