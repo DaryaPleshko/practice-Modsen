@@ -1,15 +1,14 @@
-import PropTypes from 'prop-types';
-import { createContext } from 'react';
+import React, { createContext, ReactNode } from 'react';
+import { iForm } from '../interface';
+interface iSearchBooksProviderProps {
+  children: ReactNode;
+  searchBooks: (form: iForm) => void;
+}
 
-const SearchBooksContext = createContext();
+const SearchBooksContext = createContext<(form: iForm) => void>(() => {});
 
-export const SearchBooksProvider = ({ children, searchBooks }) => {
+export const SearchBooksProvider: React.FC<iSearchBooksProviderProps> = ({ children, searchBooks }) => {
   return <SearchBooksContext.Provider value={searchBooks}>{children}</SearchBooksContext.Provider>;
-};
-
-SearchBooksProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-  searchBooks: PropTypes.func.isRequired,
 };
 
 export default SearchBooksContext;

@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import { useSearchBooks } from '../../context/useSearchBooks';
 import { Select } from '../Select';
 import style from './style.module.scss';
+import { iForm } from '../../interface';
 
 const categoryOptions = [
   { value: 'all', label: 'all' },
@@ -18,17 +18,24 @@ const categorySorting = [
   { value: 'newest', label: 'newest' },
 ];
 
-const Header = ({ form, setForm }) => {
+interface HeaderProps {
+  form: iForm;
+  setForm: (param: iForm) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ form, setForm }) => {
   const searchBooks = useSearchBooks();
 
-  const changeInputsForm = (key, value) => {
+  const changeInputsForm = (key: string, value: string) => {
     console.log(`Changing ${key} to ${value}`);
     setForm({ ...form, [key]: value });
   };
 
   const getBooksByForm = async () => {
     console.log('Form data:', form);
-    searchBooks(form);
+    if (searchBooks) {
+      await searchBooks(form);
+    }
   };
 
   return (
@@ -62,15 +69,6 @@ const Header = ({ form, setForm }) => {
       </div>
     </header>
   );
-};
-
-Header.propTypes = {
-  form: PropTypes.shape({
-    title: PropTypes.string,
-    subject: PropTypes.string,
-    sorting: PropTypes.string,
-  }).isRequired,
-  setForm: PropTypes.func.isRequired,
 };
 
 export { Header };
