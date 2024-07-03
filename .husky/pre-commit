@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 echo \”[Husky] pre-commit\”
 
-npm run format && npm run lint && git add -A
+npm run format && npm run lint && git add -A && npx eslint --fix

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { iErrorBoundaryProps, iErrorBoundaryState } from '../interface';
 class ErrorBoundary extends React.Component<iErrorBoundaryProps, iErrorBoundaryState> {
   constructor(props: iErrorBoundaryProps) {
